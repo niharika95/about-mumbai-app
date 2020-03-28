@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" type="text/css" href="./resources.css" /> -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,600,800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Resources</title>
+    <style>
+      .creditsContainer {
+        font-family: 'Roboto', sans-serif;
+      }
+      .title {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      .subTitle {
+        font-size: 24px;
+        font-weight: 600;
+        text-decoration: underline;
+      }
+      .imageCreditsImageName,
+      .textCreditsName {
+        font-size: 18px;
+        font-weight: 600;
+        padding-bottom: 15px;
+        margin: 0;
+      }
+      .imageCreditsImageIcon {
+        width: 70px;
+        display: block;
+        margin-bottom: 20px;
+      }
+      .imageCreditsImageUrl,
+      .imageCreditsImageLocation,
+      .textCreditsUrl,
+      .textCreditsLocation {
+        font-size: 16px;
+        font-weight: 400;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="creditsContainer">
+      <h2 class="title">Credits</h2>
+      <h4 class="subTitle">Images</h4>
+      <div class="imageCreditsContainer"></div>
+      <h4 class="subTitle">Text</h4>
+      <div class="textCreditsContainer"></div>
+    </div>
+    <script>
+      var referencesURL = '../content.json'
+      var referencesXHR = new XMLHttpRequest()
+      var imageHTML = ''
+      var textHTML = ''
+      referencesXHR.onload = function() {
+        let creditsJSON = JSON.parse(referencesXHR.responseText)
+        let imageCredits = creditsJSON.credits.images
+        let textCredits = creditsJSON.credits.text
+
+        for (let i = 0; i < imageCredits.length; i++) {
+          imageHTML += `<h5 class="imageCreditsImageName">${imageCredits[i].imageName}</h5>`
+          imageHTML += `<img class="imageCreditsImageIcon" src="${imageCredits[i].imageIcon}" />`
+          imageHTML += `URL: <a target="_blank" href="${imageCredits[i].imageUrl}" class="imageCreditsImageUrl">${imageCredits[i].imageUrl}</a>`
+          imageHTML += `<h5 class="imageCreditsImageLocation">Use: ${imageCredits[i].imageLocation}</h5><hr>`
+        }
+
+        for (let i = 0; i < textCredits.length; i++) {
+          textHTML += `<h5 class="textCreditsName">${textCredits[i].textName}</h5>`
+          textHTML += `URL: <a target="_blank" href="${textCredits[i].textUrl}" class="textCreditsUrl">${textCredits[i].textUrl}</a>`
+          textHTML += `<h5 class="textCreditsLocation">Use: ${textCredits[i].textLocation}</h5><hr>`
+        }
+
+        document.querySelector('.imageCreditsContainer').innerHTML = imageHTML
+        document.querySelector('.textCreditsContainer').innerHTML = textHTML
+      }
+
+      if ((document.readyState = 'ready')) {
+        document.querySelector('.imageCreditsContainer').innerHTML = imageHTML
+        document.querySelector('.textCreditsContainer').innerHTML = textHTML
+      }
+
+      referencesXHR.open('GET', referencesURL, true)
+      referencesXHR.send()
+    </script>
+  </body>
+</html>

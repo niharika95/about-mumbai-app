@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="../assets/css/home.css" />
+    <link rel="stylesheet" type="text/css" href="../index.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/header.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../assets/css/navigationBar.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="headerContainer">
+      <div class="headerText">
+        <h1 class="headerTitle">Mumbai</h1>
+        <h2 class="headerSubtitle">THE CITY OF DREAMS</h2>
+      </div>
+      <div class="headerIcon">
+        <img class="menuIcon" src="../assets/images/menuIcon.png" />
+      </div>
+      <div class="dropdown">
+        <a class="navLinkHomeMenu menuLink">HOME</a>
+        <a class="navLinkLocationMenu menuLink">LOCATION</a>
+        <a class="navLinkWeatherMenu menuLink">WEATHER</a>
+        <a class="navLinkReferencesMenu menuLink">REFERENCES</a>
+      </div>
+    </header>
+    <nav class="navigationBarContainer">
+      <div class="navItem">
+        <a class="navLinkHome">HOME</a>
+      </div>
+      <div class="navItem">
+        <a class="navLinkLocation">LOCATION</a>
+      </div>
+      <div class="navItem">
+        <a class="navLinkWeather">WEATHER</a>
+      </div>
+      <div class="navItem">
+        <a class="navLinkReferences">REFERENCES</a>
+      </div>
+    </nav>
+    <main id="mainContent">
+      <a name="compositionImage"></a>
+      <img src="../assets/images/composition.png" class="compositionImage" />
+      <div class="homeContent"></div>
+    </main>
+    <footer class="footerContainer">
+      <div class="footerBgImage">
+        <div class="footerContent">
+          <div class="footerLeftSection">
+            <h5 class="footerItem">Developer: Niharika Dalal</h5>
+            <h5 class="footerItem">@Rochester Institute of Technology</h5>
+            <h5 class="footerItem">
+              Golisano College of Computing and Information Sciences
+            </h5>
+          </div>
+          <div class="footerRightSection">
+            <h5 class="footerItem">
+              Department of Information Sciences and Technologies
+            </h5>
+            <h5 class="footerItem">Spring 2020</h5>
+            <h5 class="footerItem">Foundations of Web Technologies II</h5>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      var homeURL = '../content.json'
+      var homeXHR = new XMLHttpRequest()
+      var html = ''
+      homeXHR.onload = function() {
+        let homeJSON = JSON.parse(homeXHR.responseText)
+        let homeContentJSON = homeJSON.home
+        for (
+          let paraIndex = 0;
+          paraIndex < homeContentJSON.length;
+          paraIndex++
+        ) {
+          if (
+            homeContentJSON[paraIndex].title !== 'Personal' &&
+            homeContentJSON[paraIndex].title !== 'Introduction'
+          ) {
+            html += `<h5 class="homeContentTopics">${homeContentJSON[paraIndex].title}</h5><hr>`
+          }
+          html += `<p class="homeContentDescription">${homeContentJSON[paraIndex].description}</p>`
+        }
+        html += `<a href="#compositionImage">Back to top</a>`
+        if ((document.readyState = 'ready')) {
+          document.querySelector('.homeContent').innerHTML = html
+        }
+      }
+
+      window.onload = function() {
+        document.querySelector('.homeContent').innerHTML = html
+      }
+      homeXHR.open('GET', homeURL, true)
+      homeXHR.send()
+    </script>
+  </body>
+</html>

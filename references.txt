@@ -1,0 +1,25 @@
+Colors:
+Orange: #ff971d
+Red: #7c2020
+
+Images:
+Menu Icon - https://www.flaticon.com/free-icon/menu_483334?term=menu%20icon&page=1&position=3#
+Mumbai Skyline - <a href="https://www.vexels.com/vectors/preview/144393/mumbai-silhouette-skyline"> Mumbai silhouette skyline </a> | designed by Vexels
+Beach - https://wallpapercave.com/w/wp3768679
+Worli Sea Link - https://wallpapercave.com/w/wp3768667
+Gateway of India - https://wallpapercave.com/w/wp3768687
+Marine Drive- https://wallpapercave.com/w/wp3768669
+Weather Icon (Clear Day) - https://www.flaticon.com/free-icon/sunny-day_72643?term=clear%20day&page=1&position=1#
+Weather Icon (Clear Night) - https://www.flaticon.com/free-icon/clear-night_17279?term=clear%20night&page=1&position=5
+Weather Icon (Rain) - https://www.flaticon.com/free-icon/rain_652572?term=rain&page=1&position=4
+Weather Icon (Snow) - https://www.flaticon.com/free-icon/snowflake_1200430?term=snow&page=1&position=12
+Weather Icon (Sleet) - https://www.flaticon.com/free-icon/sleet_727907?term=sleet&page=1&position=6
+Weather Icon (Wind) - https://www.flaticon.com/free-icon/wind_1506761?term=wind&page=1&position=15
+Weather Icon (Fog) - https://www.flaticon.com/free-icon/foggy_1809565?term=fog&page=1&position=13
+Weather Icon (Cloudy) - https://www.flaticon.com/free-icon/clouds_414927?term=cloudy&page=1&position=6
+Weather Icon (Partly Cloudy Day) - https://www.flaticon.com/free-icon/sun_2698213?term=cloudy&page=1&position=10
+Weather Icon (Partly Cloudy Night) - https://www.flaticon.com/free-icon/cloudy_414933?term=cloudy%20night&page=1&position=9
+
+Text:
+HOME: https://www.holidify.com/places/mumbai/
+WEATHER: https://darksky.net/dev/docs (API)

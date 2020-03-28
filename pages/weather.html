@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" type="text/css" href="./weather.css" /> -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,500,700,800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Weather</title>
+    <style>
+      .weatherContainer {
+        font-family: 'Roboto', sans-serif;
+      }
+      .weatherSentence {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 50px;
+        font-weight: 400;
+      }
+      .currentWeather {
+        display: flex;
+        height: 100px;
+        background-color: #0068e2;
+        color: #fff;
+        border-radius: 10px;
+        justify-content: center;
+        padding: 20px 0px 20px 0px;
+      }
+      .currentWeatherText {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        text-align: right;
+        margin-right: 80px;
+      }
+      .currentWeatherDegree {
+        font-size: 60px;
+        font-weight: 100;
+      }
+      .currentWeatherSummary {
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .currentWeatherImage {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin-right: 80px;
+      }
+      .currentIconImage {
+        height: 90px;
+      }
+      .forecastedWeather {
+        margin-top: 20px;
+        background-color: #e9e9e9;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-around;
+        padding: 15px 0 15px 0;
+      }
+      .weatherCard {
+        width: 120px;
+        height: 200px;
+        border-radius: 10px;
+        background-color: #459bff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+        color: #fff;
+      }
+      .dailyFormattedDate {
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0;
+        padding-bottom: 20px;
+      }
+      .dailyIconImage {
+        width: 50px;
+      }
+      .dailyTemperatures {
+        font-size: 18px;
+      }
+      .dailyTemperatureHigh {
+        font-weight: 700;
+        margin: 0;
+      }
+      .dailyTemperatureLow {
+        font-weight: 300;
+        margin: 0;
+      }
+      @media screen and (max-width: 1265px) {
+        .weatherSentence {
+          font-size: 18px;
+          margin-bottom: 30px;
+          font-weight: 400;
+        }
+        .currentWeather {
+          display: flex;
+          height: 80px;
+          padding: 20px 0px 20px 0px;
+        }
+        .currentWeatherText {
+          text-align: center;
+        }
+        .currentWeatherText {
+          margin-right: 40px;
+        }
+        .currentWeatherDegree {
+          font-size: 40px;
+        }
+        .currentWeatherSummary {
+          font-size: 12px;
+        }
+        .currentWeatherImage {
+          flex-direction: row;
+          justify-content: center;
+        }
+        .forecastedWeather {
+          flex-direction: column;
+          justify-content: space-evenly;
+          padding: 15px 15px 15px 15px;
+        }
+        .weatherCard {
+          width: 100%;
+          height: auto;
+          padding: 15px 0px 15px 0px;
+          margin-bottom: 5px;
+          border-radius: 5px;
+          flex-direction: row;
+          justify-content: space-around;
+        }
+        .dailyIconImageContainer {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        .dailyIconImage {
+          width: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="weatherContainer">
+      <p class="weatherSentence">
+        Mumbai's weather conditions right now and for seven days from today!
+      </p>
+      <div class="currentWeather">
+        <div class="currentWeatherText">
+          <div class="currentWeatherDegree"></div>
+          <div class="currentWeatherSummary"></div>
+        </div>
+        <div class="currentWeatherImage">
+          <img />
+        </div>
+      </div>
+      <div class="forecastedWeather"></div>
+    </div>
+    <script>
+      var lat = 19.076
+      var long = 72.8777
+      var api = `https://api.darksky.net/forecast/73481f85bef5549ff6e65b451111e67d/${lat},${long}?exclude=minutely,hourly,alerts,flags`
+      fetch(api)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          // Current Weather
+          let currentTemperature = data.currently.temperature + ' \u00B0F'
+          let currentSummary = data.currently.summary.toUpperCase()
+          let currentIconText = data.currently.icon
+          let currentIconImage = document.createElement('img')
+          currentIconImage.className = 'currentIconImage'
+          document.querySelector(
+            '.currentWeatherDegree'
+          ).innerHTML = currentTemperature
+          document.querySelector(
+            '.currentWeatherSummary'
+          ).innerHTML = currentSummary
+          if (currentIconText === 'clear-day') {
+            currentIconImage.src = '../assets/images/weatherIcons/clear_day.png'
+          } else if (currentIconText === 'clear-night') {
+            currentIconImage.src =
+              '../assets/images/weatherIcons/clear_night.png'
+          } else if (currentIconText === 'rain') {
+            currentIconImage.src = '../assets/images/weatherIcons/rain.png'
+          } else if (currentIconText === 'snow') {
+            currentIconImage.src = '../assets/images/weatherIcons/snow.png'
+          } else if (currentIconText === 'sleet') {
+            currentIconImage.src = '../assets/images/weatherIcons/sleet.png'
+          } else if (currentIconText === 'wind') {
+            currentIconImage.src = '../assets/images/weatherIcons/wind.png'
+          } else if (currentIconText === 'fog') {
+            currentIconImage.src = '../assets/images/weatherIcons/fog.png'
+          } else if (currentIconText === 'cloudy') {
+            currentIconImage.src = '../assets/images/weatherIcons/cloudy.png'
+          } else if (currentIconText === 'partly-cloudy-day') {
+            currentIconImage.src =
+              '../assets/images/weatherIcons/partly_cloudy_day.png'
+          } else if (currentIconText === 'partly-cloudy-night') {
+            currentIconImage.src =
+              '../assets/images/weatherIcons/partly_cloudy_night.png'
+          }
+          document
+            .querySelector('.currentWeatherImage')
+            .appendChild(currentIconImage)
+
+          // Forecasted Weather
+          let daysArray = data.daily.data
+          let forecastHTML = ''
+
+          for (let i = 0; i < daysArray.length - 1; i++) {
+            let dailyformattedDate = ''
+            let dailyIconText = daysArray[i].icon
+            let dailyIconImage = document.createElement('img')
+            dailyIconImage.className = 'dailyIconImage'
+            let dailyTemperatureHigh = daysArray[i].temperatureHigh + ' \u00B0F'
+            let dailyTemperatureLow = daysArray[i].temperatureLow + ' \u00B0F'
+
+            let date = new Date(daysArray[i].time * 1000)
+            let day = parseInt(date.getDate() + 1)
+            let year = date.getFullYear()
+            let month = 0
+            if (parseInt(date.getMonth()) === 0) {
+              month = 'Jan'
+            } else if (parseInt(date.getMonth()) === 1) {
+              month = 'Feb'
+            } else if (parseInt(date.getMonth()) === 2) {
+              month = 'Mar'
+            } else if (parseInt(date.getMonth()) === 3) {
+              month = 'Apr'
+            } else if (parseInt(date.getMonth()) === 4) {
+              month = 'May'
+            } else if (parseInt(date.getMonth()) === 5) {
+              month = 'Jun'
+            } else if (parseInt(date.getMonth()) === 6) {
+              month = 'Jul'
+            } else if (parseInt(date.getMonth()) === 7) {
+              month = 'Aug'
+            } else if (parseInt(date.getMonth()) === 8) {
+              month = 'Sep'
+            } else if (parseInt(date.getMonth()) === 9) {
+              month = 'Oct'
+            } else if (parseInt(date.getMonth()) === 10) {
+              month = 'Nov'
+            } else if (parseInt(date.getMonth()) === 11) {
+              month = 'Dec'
+            }
+            dailyformattedDate = `${month} ${day}, ${year}`
+
+            if (dailyIconText === 'clear-day') {
+              dailyIconImage.src = '../assets/images/weatherIcons/clear_day.png'
+            } else if (dailyIconText === 'clear-night') {
+              dailyIconImage.src =
+                '../assets/images/weatherIcons/clear_night.png'
+            } else if (dailyIconText === 'rain') {
+              dailyIconImage.src = '../assets/images/weatherIcons/rain.png'
+            } else if (dailyIconText === 'snow') {
+              dailyIconImage.src = '../assets/images/weatherIcons/snow.png'
+            } else if (dailyIconText === 'sleet') {
+              dailyIconImage.src = '../assets/images/weatherIcons/sleet.png'
+            } else if (dailyIconText === 'wind') {
+              dailyIconImage.src = '../assets/images/weatherIcons/wind.png'
+            } else if (dailyIconText === 'fog') {
+              dailyIconImage.src = '../assets/images/weatherIcons/fog.png'
+            } else if (dailyIconText === 'cloudy') {
+              dailyIconImage.src = '../assets/images/weatherIcons/cloudy.png'
+            } else if (dailyIconText === 'partly-cloudy-day') {
+              dailyIconImage.src =
+                '../assets/images/weatherIcons/partly_cloudy_day.png'
+            } else if (dailyIconText === 'partly-cloudy-night') {
+              dailyIconImage.src =
+                '../assets/images/weatherIcons/partly_cloudy_night.png'
+            }
+
+            forecastHTML += `<div class="weatherCard">`
+            forecastHTML += `<div class="dailyTemperatureLeftSection"><p class="dailyFormattedDate">${dailyformattedDate}</p>`
+            forecastHTML += `<div class="dailyTemperatures"><p class="dailyTemperatureHigh">${dailyTemperatureHigh}</p><p class="dailyTemperatureLow">${dailyTemperatureLow}</p></div></div>`
+            forecastHTML += `<div class="dailyIconImageContainer"><img class="dailyIconImage" src="${dailyIconImage.src}" /></div></div>`
+
+            if ((document.readyState = 'ready')) {
+              document.querySelector(
+                '.forecastedWeather'
+              ).innerHTML = forecastHTML
+            }
+          }
+        })
+    </script>
+  </body>
+</html>

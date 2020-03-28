@@ -1,0 +1,37 @@
+.compositionImage {
+  width: 100%;
+  border-radius: 10px;
+}
+.homeContent {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin-top: 30px;
+  text-align: justify;
+}
+.homeContentTopics {
+  font-size: 20px;
+  margin-top: 40px;
+}
+.homeContentDescription {
+  line-height: 24px;
+}
+/* .backToTopLink {
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: underline;
+  margin-top: 40px;
+} */
+@media screen and (max-width: 800px) {
+  .homeContent {
+    font-size: 14px;
+  }
+  .homeContentTopics {
+    font-size: 16px;
+    margin-top: 40px;
+  }
+  /* .backToTopLink {
+    font-size: 14px;
+    cursor: pointer;
+  } */
+}

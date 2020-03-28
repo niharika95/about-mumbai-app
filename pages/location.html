@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" type="text/css" href="./location.css" /> -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Location</title>
+    <style>
+      .locationTitle {
+        text-align: center;
+        font-size: 24px;
+        font-family: 'Roboto', sans-serif;
+      }
+      .mapContainer {
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="headerContainer">
+      <div class="headerText">
+        <h1 class="headerTitle">Mumbai</h1>
+        <h2 class="headerSubtitle">THE CITY OF DREAMS</h2>
+      </div>
+      <div class="headerIcon">
+        <img class="menuIcon" src="assets/images/menuIcon.png" />
+      </div>
+      <div class="dropdown">
+        <a class="navLinkHomeMenu menuLink">HOME</a>
+        <a class="navLinkLocationMenu menuLink">LOCATION</a>
+        <a class="navLinkWeatherMenu menuLink">WEATHER</a>
+        <a class="navLinkReferencesMenu menuLink">REFERENCES</a>
+      </div>
+    </header>
+    <nav class="navigationBarContainer">
+      <div class="navItem">
+        <a class="navLinkHome">HOME</a>
+      </div>
+      <div class="navItem">
+        <a class="navLinkLocation">LOCATION</a>
+      </div>
+      <div class="navItem">
+        <a class="navLinkWeather">WEATHER</a>
+      </div>
+      <div class="navItem">
+        <a class="navLinkReferences">REFERENCES</a>
+      </div>
+    </nav>
+    <main id="mainContent">
+      <p class="locationTitle">Location</p>
+      <div class="mapContainer"></div>
+    </main>
+    <footer class="footerContainer">
+      <div class="footerBgImage">
+        <div class="footerContent">
+          <div class="footerLeftSection">
+            <h5 class="footerItem">Developer: Niharika Dalal</h5>
+            <h5 class="footerItem">@Rochester Institute of Technology</h5>
+            <h5 class="footerItem">
+              Golisano College of Computing and Information Sciences
+            </h5>
+          </div>
+          <div class="footerRightSection">
+            <h5 class="footerItem">
+              Department of Information Sciences and Technologies
+            </h5>
+            <h5 class="footerItem">Spring 2020</h5>
+            <h5 class="footerItem">Foundations of Web Technologies II</h5>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGFs1oSjxdC2Mm5DDigY_jgzY8_-PtB68&callback=initMap"
+      async
+      defer
+    ></script>
+    <script>
+      console.log('hello')
+      var map
+      window.onload = function() {
+        map = new google.maps.Map(document.querySelector('.mapContainer'), {
+          center: { lat: -34.397, lng: 150.644 },
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        })
+      }
+      console.log(document.readyState)
+      if (document.readyState === 'complete') {
+        map = new google.maps.Map(document.querySelector('.mapContainer'), {
+          center: { lat: -34.397, lng: 150.644 },
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        })
+      }
+
+      function initMap() {}
+    </script>
+  </body>
+</html>
