@@ -1,166 +1,116 @@
+<!-- This is the Weather page which displays real-time weather data. -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" type="text/css" href="./weather.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/weather.css" />
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto:100,500,700,800&display=swap"
+      href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,500,600,700,900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" type="text/css" href="../index.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/header.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../assets/css/navigationBar.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Weather</title>
-    <style>
-      .weatherContainer {
-        font-family: 'Roboto', sans-serif;
-      }
-      .weatherSentence {
-        text-align: center;
-        font-size: 24px;
-        margin-bottom: 50px;
-        font-weight: 400;
-      }
-      .currentWeather {
-        display: flex;
-        height: 100px;
-        background-color: #0068e2;
-        color: #fff;
-        border-radius: 10px;
-        justify-content: center;
-        padding: 20px 0px 20px 0px;
-      }
-      .currentWeatherText {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        text-align: right;
-        margin-right: 80px;
-      }
-      .currentWeatherDegree {
-        font-size: 60px;
-        font-weight: 100;
-      }
-      .currentWeatherSummary {
-        font-size: 18px;
-        font-weight: 500;
-      }
-      .currentWeatherImage {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        margin-right: 80px;
-      }
-      .currentIconImage {
-        height: 90px;
-      }
-      .forecastedWeather {
-        margin-top: 20px;
-        background-color: #e9e9e9;
-        border-radius: 10px;
-        display: flex;
-        justify-content: space-around;
-        padding: 15px 0 15px 0;
-      }
-      .weatherCard {
-        width: 120px;
-        height: 200px;
-        border-radius: 10px;
-        background-color: #459bff;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        text-align: center;
-        color: #fff;
-      }
-      .dailyFormattedDate {
-        font-size: 16px;
-        font-weight: 500;
-        margin: 0;
-        padding-bottom: 20px;
-      }
-      .dailyIconImage {
-        width: 50px;
-      }
-      .dailyTemperatures {
-        font-size: 18px;
-      }
-      .dailyTemperatureHigh {
-        font-weight: 700;
-        margin: 0;
-      }
-      .dailyTemperatureLow {
-        font-weight: 300;
-        margin: 0;
-      }
-      @media screen and (max-width: 1265px) {
-        .weatherSentence {
-          font-size: 18px;
-          margin-bottom: 30px;
-          font-weight: 400;
-        }
-        .currentWeather {
-          display: flex;
-          height: 80px;
-          padding: 20px 0px 20px 0px;
-        }
-        .currentWeatherText {
-          text-align: center;
-        }
-        .currentWeatherText {
-          margin-right: 40px;
-        }
-        .currentWeatherDegree {
-          font-size: 40px;
-        }
-        .currentWeatherSummary {
-          font-size: 12px;
-        }
-        .currentWeatherImage {
-          flex-direction: row;
-          justify-content: center;
-        }
-        .forecastedWeather {
-          flex-direction: column;
-          justify-content: space-evenly;
-          padding: 15px 15px 15px 15px;
-        }
-        .weatherCard {
-          width: 100%;
-          height: auto;
-          padding: 15px 0px 15px 0px;
-          margin-bottom: 5px;
-          border-radius: 5px;
-          flex-direction: row;
-          justify-content: space-around;
-        }
-        .dailyIconImageContainer {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-        .dailyIconImage {
-          width: 60px;
-        }
-      }
-    </style>
   </head>
   <body>
-    <div class="weatherContainer">
-      <p class="weatherSentence">
-        Mumbai's weather conditions right now and for seven days from today!
-      </p>
-      <div class="currentWeather">
-        <div class="currentWeatherText">
-          <div class="currentWeatherDegree"></div>
-          <div class="currentWeatherSummary"></div>
+    <!-- Header -->
+    <header class="headerContainer">
+      <div class="headerText">
+        <h1 class="headerTitle">Mumbai</h1>
+        <h2 class="headerSubtitle">THE CITY OF DREAMS</h2>
+      </div>
+      <div class="headerIcon">
+        <img
+          class="menuIcon"
+          src="../assets/images/menuIcon.png"
+          alt="Menu Icon"
+        />
+      </div>
+    </header>
+    <!-- Dropdown section which is displayed when the menu button is clicked on small sized screens for navigation options -->
+    <div class="dropdown">
+      <a href="/pages/index.html" class="navLinkHomeMenu menuLink">HOME</a>
+      <a href="/pages/location.html" class="navLinkLocationMenu menuLink"
+        >LOCATION</a
+      >
+      <a href="/pages/weather.html" class="navLinkWeatherMenu menuLink"
+        >WEATHER</a
+      >
+      <a href="/pages/references.html" class="navLinkReferencesMenu menuLink"
+        >REFERENCES</a
+      >
+    </div>
+    <!-- /Header -->
+    <!-- Navigation Bar -->
+    <nav class="navigationBarContainer">
+      <div class="navItem">
+        <a href="/pages/index.html" class="navLinkHome">HOME</a>
+      </div>
+      <div class="navItem">
+        <a href="/pages/location.html" class="navLinkLocation">LOCATION</a>
+      </div>
+      <div class="navItem">
+        <a href="/pages/weather.html" class="navLinkWeather">WEATHER</a>
+      </div>
+      <div class="navItem">
+        <a href="/pages/references.html" class="navLinkReferences"
+          >REFERENCES</a
+        >
+      </div>
+    </nav>
+    <!-- /Navigation Bar -->
+    <!-- Main content on the weather page -->
+    <main id="mainContent">
+      <div class="weatherContainer">
+        <p class="weatherSentence">
+          Mumbai's weather conditions right now and for seven days from today!
+        </p>
+        <!-- Displays the current weather in Mumbai -->
+        <div class="currentWeather">
+          <div class="currentWeatherText">
+            <div class="currentWeatherDegree"></div>
+            <div class="currentWeatherSummary"></div>
+          </div>
+          <div class="currentWeatherImage"></div>
         </div>
-        <div class="currentWeatherImage">
-          <img />
+        <!-- Displays forecasted weather in Mumbai -->
+        <div class="forecastedWeather"></div>
+      </div>
+    </main>
+    <!-- /Main content on the weather page -->
+    <!-- Footer -->
+    <footer class="footerContainer">
+      <div class="footerBgImage">
+        <div class="footerContent">
+          <div class="footerLeftSection">
+            <h5 class="footerItem">Developer: Niharika Dalal</h5>
+            <h5 class="footerItem">@Rochester Institute of Technology</h5>
+            <h5 class="footerItem">
+              Golisano College of Computing and Information Sciences
+            </h5>
+          </div>
+          <div class="footerRightSection">
+            <h5 class="footerItem">
+              Department of Information Sciences and Technologies
+            </h5>
+            <h5 class="footerItem">Spring 2020</h5>
+            <h5 class="footerItem">Foundations of Web Technologies II</h5>
+          </div>
         </div>
       </div>
-      <div class="forecastedWeather"></div>
-    </div>
+    </footer>
+    <!-- Footer -->
+
     <script>
+      // Makes an API call to fetch real-time weather data
       var lat = 19.076
       var long = 72.8777
       var api = `https://api.darksky.net/forecast/73481f85bef5549ff6e65b451111e67d/${lat},${long}?exclude=minutely,hourly,alerts,flags`
@@ -221,6 +171,7 @@
             let dailyTemperatureHigh = daysArray[i].temperatureHigh + ' \u00B0F'
             let dailyTemperatureLow = daysArray[i].temperatureLow + ' \u00B0F'
 
+            // Parsing data to get the exact date in the required format
             let date = new Date(daysArray[i].time * 1000)
             let day = parseInt(date.getDate() + 1)
             let year = date.getFullYear()
@@ -252,6 +203,7 @@
             }
             dailyformattedDate = `${month} ${day}, ${year}`
 
+            // Setting icons as per the real-time climate
             if (dailyIconText === 'clear-day') {
               dailyIconImage.src = '../assets/images/weatherIcons/clear_day.png'
             } else if (dailyIconText === 'clear-night') {
@@ -280,7 +232,7 @@
             forecastHTML += `<div class="weatherCard">`
             forecastHTML += `<div class="dailyTemperatureLeftSection"><p class="dailyFormattedDate">${dailyformattedDate}</p>`
             forecastHTML += `<div class="dailyTemperatures"><p class="dailyTemperatureHigh">${dailyTemperatureHigh}</p><p class="dailyTemperatureLow">${dailyTemperatureLow}</p></div></div>`
-            forecastHTML += `<div class="dailyIconImageContainer"><img class="dailyIconImage" src="${dailyIconImage.src}" /></div></div>`
+            forecastHTML += `<div class="dailyIconImageContainer"><img class="dailyIconImage" src="${dailyIconImage.src}" alt="Weather Icon" /></div></div>`
 
             if ((document.readyState = 'ready')) {
               document.querySelector(
@@ -289,6 +241,17 @@
             }
           }
         })
+    </script>
+    <script>
+      // Handles the navigation dropdown on small screen sizes.
+      function toggleNavigationDropdown() {
+        let dropdown = document.querySelector('.dropdown')
+        dropdown.classList.toggle('open')
+      }
+
+      document
+        .querySelector('.menuIcon')
+        .addEventListener('click', toggleNavigationDropdown)
     </script>
   </body>
 </html>

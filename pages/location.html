@@ -1,59 +1,88 @@
+<!-- This is the location page which displays a map to show the location of Mumbai on it along with markers to indicate places of interest. -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" type="text/css" href="./location.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/location.css" />
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto:500&display=swap"
+      href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,500,600,700,900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" type="text/css" href="../index.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/header.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../assets/css/navigationBar.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css" />
     <title>Location</title>
-    <style>
-      .locationTitle {
-        text-align: center;
-        font-size: 24px;
-        font-family: 'Roboto', sans-serif;
-      }
-      .mapContainer {
-        height: 400px;
-      }
-    </style>
   </head>
   <body>
+    <!-- Header -->
     <header class="headerContainer">
       <div class="headerText">
         <h1 class="headerTitle">Mumbai</h1>
         <h2 class="headerSubtitle">THE CITY OF DREAMS</h2>
       </div>
       <div class="headerIcon">
-        <img class="menuIcon" src="assets/images/menuIcon.png" />
-      </div>
-      <div class="dropdown">
-        <a class="navLinkHomeMenu menuLink">HOME</a>
-        <a class="navLinkLocationMenu menuLink">LOCATION</a>
-        <a class="navLinkWeatherMenu menuLink">WEATHER</a>
-        <a class="navLinkReferencesMenu menuLink">REFERENCES</a>
+        <img
+          class="menuIcon"
+          src="/assets/images/menuIcon.png"
+          alt="Menu Icon"
+        />
       </div>
     </header>
+    <!-- Dropdown section which is displayed when the menu button is clicked on small sized screens for navigation options -->
+    <div class="dropdown">
+      <a href="/pages/index.html" class="navLinkHomeMenu menuLink">HOME</a>
+      <a href="/pages/location.html" class="navLinkLocationMenu menuLink"
+        >LOCATION</a
+      >
+      <a href="/pages/weather.html" class="navLinkWeatherMenu menuLink"
+        >WEATHER</a
+      >
+      <a href="/pages/references.html" class="navLinkReferencesMenu menuLink"
+        >REFERENCES</a
+      >
+    </div>
+    <!-- /Header -->
+    <!-- Navigation Bar -->
     <nav class="navigationBarContainer">
       <div class="navItem">
-        <a class="navLinkHome">HOME</a>
+        <a href="/pages/index.html" class="navLinkHome">HOME</a>
       </div>
       <div class="navItem">
-        <a class="navLinkLocation">LOCATION</a>
+        <a href="/pages/location.html" class="navLinkLocation">LOCATION</a>
       </div>
       <div class="navItem">
-        <a class="navLinkWeather">WEATHER</a>
+        <a href="/pages/weather.html" class="navLinkWeather">WEATHER</a>
       </div>
       <div class="navItem">
-        <a class="navLinkReferences">REFERENCES</a>
+        <a href="/pages/references.html" class="navLinkReferences"
+          >REFERENCES</a
+        >
       </div>
     </nav>
+    <!-- /Navigation Bar -->
+    <!-- Main content on the location page -->
     <main id="mainContent">
+      <!-- Title of the page -->
       <p class="locationTitle">Location</p>
+      <!-- Option for user to select a category - Restaurants or Tourist Sites -->
+      <p class="categoryQuestion">Select your category:</p>
+      <form onchange="selectCategory(this)" class="mapForm">
+        <input type="radio" name="category" id="food" value="food" checked />
+        <label for="food">Restaurants</label>
+        <input type="radio" name="category" id="tourist" value="tourist" />
+        <label for="tourist">Tourist Sites</label>
+      </form>
+      <!-- Display of the map with markers for the different restaurants and tourist sites according to the option selected by the user -->
       <div class="mapContainer"></div>
     </main>
+    <!-- /Main content on the location page -->
+    <!-- Footer -->
     <footer class="footerContainer">
       <div class="footerBgImage">
         <div class="footerContent">
@@ -74,32 +103,109 @@
         </div>
       </div>
     </footer>
+    <!-- Footer -->
 
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGFs1oSjxdC2Mm5DDigY_jgzY8_-PtB68&callback=initMap"
-      async
-      defer
-    ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGFs1oSjxdC2Mm5DDigY_jgzY8_-PtB68"></script>
     <script>
-      console.log('hello')
+      // Creates and adds the initial map without any markers.
       var map
       window.onload = function() {
         map = new google.maps.Map(document.querySelector('.mapContainer'), {
-          center: { lat: -34.397, lng: 150.644 },
-          zoom: 8,
+          center: { lat: 19.076, lng: 72.8777 },
+          zoom: 11,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         })
+        initMap()
       }
-      console.log(document.readyState)
-      if (document.readyState === 'complete') {
-        map = new google.maps.Map(document.querySelector('.mapContainer'), {
-          center: { lat: -34.397, lng: 150.644 },
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+      // 'CurrentDisplayMarkers' is an array used to store the markers currently visible to the user.
+      let currentDisplayMarkers = [] 
+
+      // Handles adding of the generated markers to the map
+      function addMarker(latitude, longitude, title, message) {
+        let position = { lat: latitude, lng: longitude }
+        let marker = new google.maps.Marker({ position: position, map: map })
+        marker.setTitle(title)
+        currentDisplayMarkers.push(marker)
+        google.maps.event.addListener(marker, 'click', function() {
+          makeInfoWindow(position, message)
         })
       }
 
-      function initMap() {}
+      // Handles generating info window when the user clicks on a specific marker, to provide more information about the place at which the marker is pointing.
+      var infoWindow
+      function makeInfoWindow(position, message) {
+        if (infoWindow) infoWindow.close()
+
+        infoWindow = new google.maps.InfoWindow({
+          map: map,
+          position: position,
+          content: `<b>${message}</b>`
+        })
+      }
+
+      // Handles generating of markers to show on the map
+      const generateMarkers = markers => {
+        markers.forEach(item => {
+          addMarker(
+            item.position.latitude,
+            item.position.longitude,
+            item.title,
+            item.message
+          )
+        })
+      }
+
+      // Arrays to keep track of the two types of markers - Restaurants and Tourist Sites
+      var restaurantMarkers = []
+      var touristMarkers = []
+
+      // Fetches marker data from the 'content.json' JSON file
+      var locationURL = '../content.json'
+      var locationXHR = new XMLHttpRequest()
+
+      locationXHR.onload = function() {
+        let locationJSON = JSON.parse(locationXHR.responseText)
+
+        restaurantMarkers = locationJSON.location.restaurantMarkers
+        touristMarkers = locationJSON.location.touristMarkers
+      }
+      locationXHR.open('GET', locationURL, true)
+      locationXHR.send()
+
+      const initMap = () => {
+        generateMarkers(restaurantMarkers)
+      }
+
+      // Handles the clearing of the markers when the user changes the selected option
+      const clearMarkers = () => {
+        currentDisplayMarkers.forEach(item => {
+          item.setMap(null)
+        })
+        currentDisplayMarkers = []
+      }
+
+      // Handles selecting of the category when the user clicks on a specific category - Restaurants or Tourist Sites
+      const selectCategory = () => {
+        let restaurantSelected = document.querySelector('#food').checked
+        if (restaurantSelected) {
+          clearMarkers()
+          generateMarkers(restaurantMarkers)
+        } else {
+          clearMarkers()
+          generateMarkers(touristMarkers)
+        }
+      }
+    </script>
+    <script>
+      // Handles the navigation dropdown on small screen sizes.
+      function toggleNavigationDropdown() {
+        let dropdown = document.querySelector('.dropdown')
+        dropdown.classList.toggle('open')
+      }
+
+      document
+        .querySelector('.menuIcon')
+        .addEventListener('click', toggleNavigationDropdown)
     </script>
   </body>
 </html>

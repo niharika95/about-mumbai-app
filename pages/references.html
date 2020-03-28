@@ -1,57 +1,113 @@
+<!-- This is the References page which provides the sources of all the content and images (used in this website) that are taken from another website. -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" type="text/css" href="./resources.css" /> -->
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto:400,600,800&display=swap"
+      rel="stylesheet"
+      type="text/css"
+      href="../assets/css/references.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,500,600,700,900&display=swap"
       rel="stylesheet"
     />
-    <title>Resources</title>
-    <style>
-      .creditsContainer {
-        font-family: 'Roboto', sans-serif;
-      }
-      .title {
-        font-size: 30px;
-        font-weight: 800;
-      }
-      .subTitle {
-        font-size: 24px;
-        font-weight: 600;
-        text-decoration: underline;
-      }
-      .imageCreditsImageName,
-      .textCreditsName {
-        font-size: 18px;
-        font-weight: 600;
-        padding-bottom: 15px;
-        margin: 0;
-      }
-      .imageCreditsImageIcon {
-        width: 70px;
-        display: block;
-        margin-bottom: 20px;
-      }
-      .imageCreditsImageUrl,
-      .imageCreditsImageLocation,
-      .textCreditsUrl,
-      .textCreditsLocation {
-        font-size: 16px;
-        font-weight: 400;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../index.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/header.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../assets/css/navigationBar.css"
+    />
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css" />
+    <title>References</title>
   </head>
   <body>
-    <div class="creditsContainer">
-      <h2 class="title">Credits</h2>
-      <h4 class="subTitle">Images</h4>
-      <div class="imageCreditsContainer"></div>
-      <h4 class="subTitle">Text</h4>
-      <div class="textCreditsContainer"></div>
+    <!-- Header -->
+    <header class="headerContainer">
+      <div class="headerText">
+        <h1 class="headerTitle">Mumbai</h1>
+        <h2 class="headerSubtitle">THE CITY OF DREAMS</h2>
+      </div>
+      <div class="headerIcon">
+        <img
+          class="menuIcon"
+          src="/assets/images/menuIcon.png"
+          alt="Menu Icon"
+        />
+      </div>
+    </header>
+    <!-- Dropdown section which is displayed when the menu button is clicked on small sized screens for navigation options -->
+    <div class="dropdown">
+      <a href="/pages/index.html" class="navLinkHomeMenu menuLink">HOME</a>
+      <a href="/pages/location.html" class="navLinkLocationMenu menuLink"
+        >LOCATION</a
+      >
+      <a href="/pages/weather.html" class="navLinkWeatherMenu menuLink"
+        >WEATHER</a
+      >
+      <a href="/pages/references.html" class="navLinkReferencesMenu menuLink"
+        >REFERENCES</a
+      >
     </div>
+    <!-- /Header -->
+    <!-- Navigation Bar -->
+    <nav class="navigationBarContainer">
+      <div class="navItem">
+        <a href="/pages/index.html" class="navLinkHome">HOME</a>
+      </div>
+      <div class="navItem">
+        <a href="/pages/location.html" class="navLinkLocation">LOCATION</a>
+      </div>
+      <div class="navItem">
+        <a href="/pages/weather.html" class="navLinkWeather">WEATHER</a>
+      </div>
+      <div class="navItem">
+        <a href="/pages/references.html" class="navLinkReferences"
+          >REFERENCES</a
+        >
+      </div>
+    </nav>
+    <!-- /Navigation Bar -->
+    <!-- Main content on the references page -->
+    <main id="mainContent">
+      <div class="creditsContainer">
+        <h2 class="title">References</h2>
+        <!-- Displays sources of the images and pictures used in the project -->
+        <h4 class="subTitle">Images</h4>
+        <div class="imageCreditsContainer"></div>
+        <!-- Displays sources of the text used in the project -->
+        <h4 class="subTitle">Text</h4>
+        <div class="textCreditsContainer"></div>
+      </div>
+    </main>
+    <!-- /Main content on the References page -->
+    <!-- Footer -->
+    <footer class="footerContainer">
+      <div class="footerBgImage">
+        <div class="footerContent">
+          <div class="footerLeftSection">
+            <h5 class="footerItem">Developer: Niharika Dalal</h5>
+            <h5 class="footerItem">@Rochester Institute of Technology</h5>
+            <h5 class="footerItem">
+              Golisano College of Computing and Information Sciences
+            </h5>
+          </div>
+          <div class="footerRightSection">
+            <h5 class="footerItem">
+              Department of Information Sciences and Technologies
+            </h5>
+            <h5 class="footerItem">Spring 2020</h5>
+            <h5 class="footerItem">Foundations of Web Technologies II</h5>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer -->
+
     <script>
+      // Fetches data from the 'content.json' JSON file
       var referencesURL = '../content.json'
       var referencesXHR = new XMLHttpRequest()
       var imageHTML = ''
@@ -61,6 +117,7 @@
         let imageCredits = creditsJSON.credits.images
         let textCredits = creditsJSON.credits.text
 
+        // Reference data of the images being stored in a variable to display in the desired div.
         for (let i = 0; i < imageCredits.length; i++) {
           imageHTML += `<h5 class="imageCreditsImageName">${imageCredits[i].imageName}</h5>`
           imageHTML += `<img class="imageCreditsImageIcon" src="${imageCredits[i].imageIcon}" />`
@@ -68,6 +125,7 @@
           imageHTML += `<h5 class="imageCreditsImageLocation">Use: ${imageCredits[i].imageLocation}</h5><hr>`
         }
 
+        // Reference data of the text being stored in a variable to display in the desired div.
         for (let i = 0; i < textCredits.length; i++) {
           textHTML += `<h5 class="textCreditsName">${textCredits[i].textName}</h5>`
           textHTML += `URL: <a target="_blank" href="${textCredits[i].textUrl}" class="textCreditsUrl">${textCredits[i].textUrl}</a>`
@@ -78,13 +136,23 @@
         document.querySelector('.textCreditsContainer').innerHTML = textHTML
       }
 
-      if ((document.readyState = 'ready')) {
+      if (document.readyState === 'ready') {
         document.querySelector('.imageCreditsContainer').innerHTML = imageHTML
         document.querySelector('.textCreditsContainer').innerHTML = textHTML
       }
 
       referencesXHR.open('GET', referencesURL, true)
       referencesXHR.send()
+
+      // Handles the navigation dropdown on small screen sizes.
+      function toggleNavigationDropdown() {
+        let dropdown = document.querySelector('.dropdown')
+        dropdown.classList.toggle('open')
+      }
+
+      document
+        .querySelector('.menuIcon')
+        .addEventListener('click', toggleNavigationDropdown)
     </script>
   </body>
 </html>

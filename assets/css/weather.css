@@ -1,0 +1,174 @@
+/* Styles for Weather Page */
+
+/* Styles for large screen size */
+body {
+  background-color: #fdfcfa;
+  margin: 0;
+}
+.dropdown {
+  display: none;
+}
+#mainContent {
+  margin: 50px 200px 0 200px;
+}
+.weatherContainer {
+  font-family: 'Roboto', sans-serif;
+}
+.weatherSentence {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 50px;
+  font-weight: 500;
+}
+.currentWeather {
+  display: flex;
+  height: 100px;
+  background-color: #0068e2;
+  color: #fff;
+  border-radius: 10px;
+  justify-content: center;
+  padding: 20px 0px 20px 0px;
+}
+.currentWeatherText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: right;
+  margin-right: 80px;
+}
+.currentWeatherDegree {
+  font-size: 60px;
+  font-weight: 100;
+}
+.currentWeatherSummary {
+  font-size: 18px;
+  font-weight: 500;
+}
+.currentWeatherImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-right: 80px;
+}
+.currentIconImage {
+  height: 90px;
+}
+.forecastedWeather {
+  margin-top: 20px;
+  background-color: #e9e9e9;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 0 15px 0;
+}
+.weatherCard {
+  width: 120px;
+  height: 200px;
+  border-radius: 10px;
+  background-color: #459bff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  color: #fff;
+}
+.dailyFormattedDate {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  padding-bottom: 20px;
+}
+.dailyIconImage {
+  width: 50px;
+}
+.dailyTemperatures {
+  font-size: 18px;
+}
+.dailyTemperatureHigh {
+  font-weight: 700;
+  margin: 0;
+}
+.dailyTemperatureLow {
+  font-weight: 300;
+  margin: 0;
+}
+
+/* Styles for small screen size */
+@media screen and (max-width: 1265px) {
+  #mainContent {
+    margin: 25px 30px 0 30px;
+  }
+  .dropdown {
+    background: #ff971d;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    opacity: 0;
+    max-height: 0px;
+    transition: 0.2s;
+    z-index: 2;
+    padding-right: 30px;
+  }
+  .dropdown.open {
+    opacity: 1;
+    max-height: 999px;
+    height: auto;
+  }
+  .menuLink {
+    margin-bottom: 10px;
+    color: #7c2020;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+  }
+  .menuLink:hover {
+    text-decoration: underline;
+  }
+  .weatherSentence {
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-weight: 400;
+  }
+  .currentWeather {
+    display: flex;
+    height: 80px;
+    padding: 20px 0px 20px 0px;
+  }
+  .currentWeatherText {
+    text-align: center;
+  }
+  .currentWeatherText {
+    margin-right: 40px;
+  }
+  .currentWeatherDegree {
+    font-size: 40px;
+  }
+  .currentWeatherSummary {
+    font-size: 12px;
+  }
+  .currentWeatherImage {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .forecastedWeather {
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 15px 15px 15px 15px;
+  }
+  .weatherCard {
+    width: 100%;
+    height: auto;
+    padding: 15px 0px 15px 0px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .dailyIconImageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .dailyIconImage {
+    width: 60px;
+  }
+}

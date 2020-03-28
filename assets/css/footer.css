@@ -1,3 +1,6 @@
+/* Footer styles */
+
+/* Styles for large screen size */
 .footerContainer {
   height: 120px;
   width: 100%;
@@ -28,6 +31,8 @@
   font-weight: 500;
   margin: 0;
 }
+
+/* Styles for small screen size */
 @media screen and (max-width: 800px) {
   .footerContainer {
     margin-top: 70px;

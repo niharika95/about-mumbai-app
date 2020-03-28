@@ -1,3 +1,6 @@
+/* Navigation Bar style */
+
+/* Styles for large screen size */
 .navigationBarContainer {
   width: 100%;
   height: 35px;
@@ -15,6 +18,7 @@
   text-decoration: none;
 }
 
+/* The navigation bar collapses into the menu button and hence is not visible in small screen size. */
 @media screen and (max-width: 800px) {
   .navigationBarContainer {
     display: none;
