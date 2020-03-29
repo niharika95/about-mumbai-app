@@ -13,7 +13,6 @@
       href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,500,600,700,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" type="text/css" href="../index.css" />
     <link rel="stylesheet" type="text/css" href="../assets/css/header.css" />
     <link
       rel="stylesheet"
@@ -107,29 +106,53 @@
     <!-- Footer -->
 
     <script>
+      'use strict'
+
       // Fetches data from the 'content.json' JSON file
       var referencesURL = '../content.json'
       var referencesXHR = new XMLHttpRequest()
       var imageHTML = ''
       var textHTML = ''
+
       referencesXHR.onload = function() {
-        let creditsJSON = JSON.parse(referencesXHR.responseText)
-        let imageCredits = creditsJSON.credits.images
-        let textCredits = creditsJSON.credits.text
+        var creditsJSON = JSON.parse(referencesXHR.responseText)
+        var imageCredits = creditsJSON.credits.images
+        var textCredits = creditsJSON.credits.text
 
         // Reference data of the images being stored in a variable to display in the desired div.
-        for (let i = 0; i < imageCredits.length; i++) {
-          imageHTML += `<h5 class="imageCreditsImageName">${imageCredits[i].imageName}</h5>`
-          imageHTML += `<img class="imageCreditsImageIcon" src="${imageCredits[i].imageIcon}" />`
-          imageHTML += `URL: <a target="_blank" href="${imageCredits[i].imageUrl}" class="imageCreditsImageUrl">${imageCredits[i].imageUrl}</a>`
-          imageHTML += `<h5 class="imageCreditsImageLocation">Use: ${imageCredits[i].imageLocation}</h5><hr>`
+
+        for (var i = 0; i < imageCredits.length; i++) {
+          imageHTML += '<h5 class="imageCreditsImageName">'.concat(
+            imageCredits[i].imageName,
+            '</h5>'
+          )
+          imageHTML += '<img class="imageCreditsImageIcon" src="'.concat(
+            imageCredits[i].imageIcon,
+            '" />'
+          )
+          imageHTML += 'URL: <a target="_blank" href="'
+            .concat(imageCredits[i].imageUrl, '" class="imageCreditsImageUrl">')
+            .concat(imageCredits[i].imageUrl, '</a>')
+          imageHTML += '<h5 class="imageCreditsImageLocation">Use: '.concat(
+            imageCredits[i].imageLocation,
+            '</h5><hr>'
+          )
         }
 
         // Reference data of the text being stored in a variable to display in the desired div.
-        for (let i = 0; i < textCredits.length; i++) {
-          textHTML += `<h5 class="textCreditsName">${textCredits[i].textName}</h5>`
-          textHTML += `URL: <a target="_blank" href="${textCredits[i].textUrl}" class="textCreditsUrl">${textCredits[i].textUrl}</a>`
-          textHTML += `<h5 class="textCreditsLocation">Use: ${textCredits[i].textLocation}</h5><hr>`
+
+        for (var _i = 0; _i < textCredits.length; _i++) {
+          textHTML += '<h5 class="textCreditsName">'.concat(
+            textCredits[_i].textName,
+            '</h5>'
+          )
+          textHTML += 'URL: <a target="_blank" href="'
+            .concat(textCredits[_i].textUrl, '" class="textCreditsUrl">')
+            .concat(textCredits[_i].textUrl, '</a>')
+          textHTML += '<h5 class="textCreditsLocation">Use: '.concat(
+            textCredits[_i].textLocation,
+            '</h5><hr>'
+          )
         }
 
         document.querySelector('.imageCreditsContainer').innerHTML = imageHTML
@@ -145,8 +168,9 @@
       referencesXHR.send()
 
       // Handles the navigation dropdown on small screen sizes.
+
       function toggleNavigationDropdown() {
-        let dropdown = document.querySelector('.dropdown')
+        var dropdown = document.querySelector('.dropdown')
         dropdown.classList.toggle('open')
       }
 

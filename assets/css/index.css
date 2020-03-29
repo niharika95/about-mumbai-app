@@ -9,7 +9,7 @@ body {
   display: none;
 }
 #mainContent {
-  margin: 50px 200px 0 200px;
+  margin: 50px 200px 0px 200px;
 }
 .compositionImage {
   width: 100%;
@@ -28,6 +28,13 @@ body {
 }
 .homeContentDescription {
   line-height: 24px;
+}
+
+/* IE10+ CSS styles go here */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  #mainContent {
+    margin: 50px 0px 0px 0px;
+  }
 }
 
 /* Styles for small screen size */

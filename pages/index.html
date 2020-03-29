@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <link rel="stylesheet" href="../assets/css/index.css" />
-    <link rel="stylesheet" type="text/css" href="../index.css" />
     <link rel="stylesheet" type="text/css" href="../assets/css/header.css" />
     <link
       rel="stylesheet"
@@ -103,15 +102,19 @@
     <!-- Footer -->
 
     <script>
+      'use strict'
+
       // Fetching data from the JSON file 'content.json'
       var homeURL = '../content.json'
       var homeXHR = new XMLHttpRequest()
       var html = ''
+
       homeXHR.onload = function() {
-        let homeJSON = JSON.parse(homeXHR.responseText)
-        let homeContentJSON = homeJSON.home
+        var homeJSON = JSON.parse(homeXHR.responseText)
+        var homeContentJSON = homeJSON.home
+
         for (
-          let paraIndex = 0;
+          var paraIndex = 0;
           paraIndex < homeContentJSON.length;
           paraIndex++
         ) {
@@ -119,13 +122,22 @@
             homeContentJSON[paraIndex].title !== 'Personal' &&
             homeContentJSON[paraIndex].title !== 'Introduction'
           ) {
-            html += `<h5 class="homeContentTopics">${homeContentJSON[paraIndex].title}</h5><hr>`
+            html += '<h5 class="homeContentTopics">'.concat(
+              homeContentJSON[paraIndex].title,
+              '</h5><hr>'
+            )
           }
-          html += `<p class="homeContentDescription">${homeContentJSON[paraIndex].description}</p>`
+
+          html += '<p class="homeContentDescription">'.concat(
+            homeContentJSON[paraIndex].description,
+            '</p>'
+          )
         }
-        html += `<a href="#top">Back to top</a>`
-        
-        if ((document.readyState = 'ready')) {
+
+        // This adds a 'back to top' link for the user to be able to directly go to the top of the page and avoid scrolling.
+        html += '<a href="#top">Back to top</a>'
+
+        if (document.readyState === 'ready') {
           document.querySelector('.homeContent').innerHTML = html
         }
       }
@@ -133,13 +145,14 @@
       window.onload = function() {
         document.querySelector('.homeContent').innerHTML = html
       }
+
       homeXHR.open('GET', homeURL, true)
       homeXHR.send()
-    </script>
-    <script>
+
       // Handles the navigation dropdown on small screen sizes.
+
       function toggleNavigationDropdown() {
-        let dropdown = document.querySelector('.dropdown')
+        var dropdown = document.querySelector('.dropdown')
         dropdown.classList.toggle('open')
       }
 

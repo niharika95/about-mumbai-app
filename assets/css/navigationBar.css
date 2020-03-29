@@ -18,6 +18,14 @@
   text-decoration: none;
 }
 
+/* IE10+ CSS styles go here */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .navItem {
+    margin-left: 30px;
+    margin-right: 20px;
+  }
+}
+
 /* The navigation bar collapses into the menu button and hence is not visible in small screen size. */
 @media screen and (max-width: 800px) {
   .navigationBarContainer {

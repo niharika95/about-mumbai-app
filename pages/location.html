@@ -9,7 +9,6 @@
       href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,500,600,700,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" type="text/css" href="../index.css" />
     <link rel="stylesheet" type="text/css" href="../assets/css/header.css" />
     <link
       rel="stylesheet"
@@ -107,23 +106,38 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGFs1oSjxdC2Mm5DDigY_jgzY8_-PtB68"></script>
     <script>
+      'use strict'
+
       // Creates and adds the initial map without any markers.
       var map
+
       window.onload = function() {
         map = new google.maps.Map(document.querySelector('.mapContainer'), {
-          center: { lat: 19.076, lng: 72.8777 },
+          center: {
+            lat: 19.076,
+            lng: 72.8777
+          },
           zoom: 11,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         })
         initMap()
       }
+
       // 'CurrentDisplayMarkers' is an array used to store the markers currently visible to the user.
-      let currentDisplayMarkers = [] 
+
+      var currentDisplayMarkers = []
 
       // Handles adding of the generated markers to the map
+
       function addMarker(latitude, longitude, title, message) {
-        let position = { lat: latitude, lng: longitude }
-        let marker = new google.maps.Marker({ position: position, map: map })
+        var position = {
+          lat: latitude,
+          lng: longitude
+        }
+        var marker = new google.maps.Marker({
+          position: position,
+          map: map
+        })
         marker.setTitle(title)
         currentDisplayMarkers.push(marker)
         google.maps.event.addListener(marker, 'click', function() {
@@ -132,20 +146,22 @@
       }
 
       // Handles generating info window when the user clicks on a specific marker, to provide more information about the place at which the marker is pointing.
+
       var infoWindow
+
       function makeInfoWindow(position, message) {
         if (infoWindow) infoWindow.close()
-
         infoWindow = new google.maps.InfoWindow({
           map: map,
           position: position,
-          content: `<b>${message}</b>`
+          content: '<b>'.concat(message, '</b>')
         })
       }
 
       // Handles generating of markers to show on the map
-      const generateMarkers = markers => {
-        markers.forEach(item => {
+
+      var generateMarkers = function generateMarkers(markers) {
+        markers.forEach(function(item) {
           addMarker(
             item.position.latitude,
             item.position.longitude,
@@ -156,37 +172,42 @@
       }
 
       // Arrays to keep track of the two types of markers - Restaurants and Tourist Sites
+
       var restaurantMarkers = []
       var touristMarkers = []
 
       // Fetches marker data from the 'content.json' JSON file
+
       var locationURL = '../content.json'
       var locationXHR = new XMLHttpRequest()
 
       locationXHR.onload = function() {
-        let locationJSON = JSON.parse(locationXHR.responseText)
-
+        var locationJSON = JSON.parse(locationXHR.responseText)
         restaurantMarkers = locationJSON.location.restaurantMarkers
         touristMarkers = locationJSON.location.touristMarkers
       }
+
       locationXHR.open('GET', locationURL, true)
       locationXHR.send()
 
-      const initMap = () => {
+      var initMap = function initMap() {
         generateMarkers(restaurantMarkers)
       }
 
       // Handles the clearing of the markers when the user changes the selected option
-      const clearMarkers = () => {
-        currentDisplayMarkers.forEach(item => {
+
+      var clearMarkers = function clearMarkers() {
+        currentDisplayMarkers.forEach(function(item) {
           item.setMap(null)
         })
         currentDisplayMarkers = []
       }
 
       // Handles selecting of the category when the user clicks on a specific category - Restaurants or Tourist Sites
-      const selectCategory = () => {
-        let restaurantSelected = document.querySelector('#food').checked
+
+      var selectCategory = function selectCategory() {
+        var restaurantSelected = document.querySelector('#food').checked
+
         if (restaurantSelected) {
           clearMarkers()
           generateMarkers(restaurantMarkers)
@@ -195,11 +216,10 @@
           generateMarkers(touristMarkers)
         }
       }
-    </script>
-    <script>
+
       // Handles the navigation dropdown on small screen sizes.
       function toggleNavigationDropdown() {
-        let dropdown = document.querySelector('.dropdown')
+        var dropdown = document.querySelector('.dropdown')
         dropdown.classList.toggle('open')
       }
 

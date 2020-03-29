@@ -9,7 +9,6 @@
       href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,500,600,700,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" type="text/css" href="../index.css" />
     <link rel="stylesheet" type="text/css" href="../assets/css/header.css" />
     <link
       rel="stylesheet"
@@ -113,136 +112,149 @@
       // Makes an API call to fetch real-time weather data
       var lat = 19.076
       var long = 72.8777
-      var api = `https://api.darksky.net/forecast/73481f85bef5549ff6e65b451111e67d/${lat},${long}?exclude=minutely,hourly,alerts,flags`
-      fetch(api)
-        .then(response => {
-          return response.json()
-        })
-        .then(data => {
-          // Current Weather
-          let currentTemperature = data.currently.temperature + ' \u00B0F'
-          let currentSummary = data.currently.summary.toUpperCase()
-          let currentIconText = data.currently.icon
-          let currentIconImage = document.createElement('img')
-          currentIconImage.className = 'currentIconImage'
-          document.querySelector(
-            '.currentWeatherDegree'
-          ).innerHTML = currentTemperature
-          document.querySelector(
-            '.currentWeatherSummary'
-          ).innerHTML = currentSummary
-          if (currentIconText === 'clear-day') {
-            currentIconImage.src = '../assets/images/weatherIcons/clear_day.png'
-          } else if (currentIconText === 'clear-night') {
-            currentIconImage.src =
-              '../assets/images/weatherIcons/clear_night.png'
-          } else if (currentIconText === 'rain') {
-            currentIconImage.src = '../assets/images/weatherIcons/rain.png'
-          } else if (currentIconText === 'snow') {
-            currentIconImage.src = '../assets/images/weatherIcons/snow.png'
-          } else if (currentIconText === 'sleet') {
-            currentIconImage.src = '../assets/images/weatherIcons/sleet.png'
-          } else if (currentIconText === 'wind') {
-            currentIconImage.src = '../assets/images/weatherIcons/wind.png'
-          } else if (currentIconText === 'fog') {
-            currentIconImage.src = '../assets/images/weatherIcons/fog.png'
-          } else if (currentIconText === 'cloudy') {
-            currentIconImage.src = '../assets/images/weatherIcons/cloudy.png'
-          } else if (currentIconText === 'partly-cloudy-day') {
-            currentIconImage.src =
+      var api = 'https://api.darksky.net/forecast/73481f85bef5549ff6e65b451111e67d/'
+        .concat(lat, ',')
+        .concat(long, '?exclude=minutely,hourly,alerts,flags')
+
+      weatherXHR = new XMLHttpRequest()
+      weatherXHR.onload = function() {
+        var data = JSON.parse(weatherXHR.responseText)
+        // Current Weather
+        let currentTemperature = data.currently.temperature + ' \u00B0F'
+        let currentSummary = data.currently.summary.toUpperCase()
+        let currentIconText = data.currently.icon
+        let currentIconImage = document.createElement('img')
+        currentIconImage.className = 'currentIconImage'
+        document.querySelector(
+          '.currentWeatherDegree'
+        ).innerHTML = currentTemperature
+        document.querySelector(
+          '.currentWeatherSummary'
+        ).innerHTML = currentSummary
+        if (currentIconText === 'clear-day') {
+          currentIconImage.src = '../assets/images/weatherIcons/clear_day.png'
+        } else if (currentIconText === 'clear-night') {
+          currentIconImage.src = '../assets/images/weatherIcons/clear_night.png'
+        } else if (currentIconText === 'rain') {
+          currentIconImage.src = '../assets/images/weatherIcons/rain.png'
+        } else if (currentIconText === 'snow') {
+          currentIconImage.src = '../assets/images/weatherIcons/snow.png'
+        } else if (currentIconText === 'sleet') {
+          currentIconImage.src = '../assets/images/weatherIcons/sleet.png'
+        } else if (currentIconText === 'wind') {
+          currentIconImage.src = '../assets/images/weatherIcons/wind.png'
+        } else if (currentIconText === 'fog') {
+          currentIconImage.src = '../assets/images/weatherIcons/fog.png'
+        } else if (currentIconText === 'cloudy') {
+          currentIconImage.src = '../assets/images/weatherIcons/cloudy.png'
+        } else if (currentIconText === 'partly-cloudy-day') {
+          currentIconImage.src =
+            '../assets/images/weatherIcons/partly_cloudy_day.png'
+        } else if (currentIconText === 'partly-cloudy-night') {
+          currentIconImage.src =
+            '../assets/images/weatherIcons/partly_cloudy_night.png'
+        }
+        document
+          .querySelector('.currentWeatherImage')
+          .appendChild(currentIconImage)
+
+        // Forecasted Weather
+        let daysArray = data.daily.data
+        let forecastHTML = ''
+
+        for (let i = 0; i < daysArray.length - 1; i++) {
+          let dailyformattedDate = ''
+          let dailyIconText = daysArray[i].icon
+          let dailyIconImage = document.createElement('img')
+          dailyIconImage.className = 'dailyIconImage'
+          let dailyTemperatureHigh = daysArray[i].temperatureHigh + ' \u00B0F'
+          let dailyTemperatureLow = daysArray[i].temperatureLow + ' \u00B0F'
+
+          // Parsing data to get the exact date in the required format
+          let date = new Date(daysArray[i].time * 1000)
+          let day = parseInt(date.getDate())
+          let year = date.getFullYear()
+          let month = 0
+          if (parseInt(date.getMonth()) === 0) {
+            month = 'Jan'
+          } else if (parseInt(date.getMonth()) === 1) {
+            month = 'Feb'
+          } else if (parseInt(date.getMonth()) === 2) {
+            month = 'Mar'
+          } else if (parseInt(date.getMonth()) === 3) {
+            month = 'Apr'
+          } else if (parseInt(date.getMonth()) === 4) {
+            month = 'May'
+          } else if (parseInt(date.getMonth()) === 5) {
+            month = 'Jun'
+          } else if (parseInt(date.getMonth()) === 6) {
+            month = 'Jul'
+          } else if (parseInt(date.getMonth()) === 7) {
+            month = 'Aug'
+          } else if (parseInt(date.getMonth()) === 8) {
+            month = 'Sep'
+          } else if (parseInt(date.getMonth()) === 9) {
+            month = 'Oct'
+          } else if (parseInt(date.getMonth()) === 10) {
+            month = 'Nov'
+          } else if (parseInt(date.getMonth()) === 11) {
+            month = 'Dec'
+          }
+
+          dailyformattedDate = ''
+            .concat(month, ' ')
+            .concat(day, ', ')
+            .concat(year)
+
+          // Setting icons as per the real-time climate
+          if (dailyIconText === 'clear-day') {
+            dailyIconImage.src = '../assets/images/weatherIcons/clear_day.png'
+          } else if (dailyIconText === 'clear-night') {
+            dailyIconImage.src = '../assets/images/weatherIcons/clear_night.png'
+          } else if (dailyIconText === 'rain') {
+            dailyIconImage.src = '../assets/images/weatherIcons/rain.png'
+          } else if (dailyIconText === 'snow') {
+            dailyIconImage.src = '../assets/images/weatherIcons/snow.png'
+          } else if (dailyIconText === 'sleet') {
+            dailyIconImage.src = '../assets/images/weatherIcons/sleet.png'
+          } else if (dailyIconText === 'wind') {
+            dailyIconImage.src = '../assets/images/weatherIcons/wind.png'
+          } else if (dailyIconText === 'fog') {
+            dailyIconImage.src = '../assets/images/weatherIcons/fog.png'
+          } else if (dailyIconText === 'cloudy') {
+            dailyIconImage.src = '../assets/images/weatherIcons/cloudy.png'
+          } else if (dailyIconText === 'partly-cloudy-day') {
+            dailyIconImage.src =
               '../assets/images/weatherIcons/partly_cloudy_day.png'
-          } else if (currentIconText === 'partly-cloudy-night') {
-            currentIconImage.src =
+          } else if (dailyIconText === 'partly-cloudy-night') {
+            dailyIconImage.src =
               '../assets/images/weatherIcons/partly_cloudy_night.png'
           }
-          document
-            .querySelector('.currentWeatherImage')
-            .appendChild(currentIconImage)
 
-          // Forecasted Weather
-          let daysArray = data.daily.data
-          let forecastHTML = ''
+          forecastHTML += '<div class="weatherCard">'
+          forecastHTML += '<div class="dailyTemperatureLeftSection"><p class="dailyFormattedDate">'.concat(
+            dailyformattedDate,
+            '</p>'
+          )
+          forecastHTML += '<div class="dailyTemperatures"><p class="dailyTemperatureHigh">'
+            .concat(dailyTemperatureHigh, '</p><p class="dailyTemperatureLow">')
+            .concat(dailyTemperatureLow, '</p></div></div>')
+          forecastHTML += '<div class="dailyIconImageContainer"><img class="dailyIconImage" src="'.concat(
+            dailyIconImage.src,
+            '" alt="Weather Icon" /></div></div>'
+          )
 
-          for (let i = 0; i < daysArray.length - 1; i++) {
-            let dailyformattedDate = ''
-            let dailyIconText = daysArray[i].icon
-            let dailyIconImage = document.createElement('img')
-            dailyIconImage.className = 'dailyIconImage'
-            let dailyTemperatureHigh = daysArray[i].temperatureHigh + ' \u00B0F'
-            let dailyTemperatureLow = daysArray[i].temperatureLow + ' \u00B0F'
-
-            // Parsing data to get the exact date in the required format
-            let date = new Date(daysArray[i].time * 1000)
-            let day = parseInt(date.getDate() + 1)
-            let year = date.getFullYear()
-            let month = 0
-            if (parseInt(date.getMonth()) === 0) {
-              month = 'Jan'
-            } else if (parseInt(date.getMonth()) === 1) {
-              month = 'Feb'
-            } else if (parseInt(date.getMonth()) === 2) {
-              month = 'Mar'
-            } else if (parseInt(date.getMonth()) === 3) {
-              month = 'Apr'
-            } else if (parseInt(date.getMonth()) === 4) {
-              month = 'May'
-            } else if (parseInt(date.getMonth()) === 5) {
-              month = 'Jun'
-            } else if (parseInt(date.getMonth()) === 6) {
-              month = 'Jul'
-            } else if (parseInt(date.getMonth()) === 7) {
-              month = 'Aug'
-            } else if (parseInt(date.getMonth()) === 8) {
-              month = 'Sep'
-            } else if (parseInt(date.getMonth()) === 9) {
-              month = 'Oct'
-            } else if (parseInt(date.getMonth()) === 10) {
-              month = 'Nov'
-            } else if (parseInt(date.getMonth()) === 11) {
-              month = 'Dec'
-            }
-            dailyformattedDate = `${month} ${day}, ${year}`
-
-            // Setting icons as per the real-time climate
-            if (dailyIconText === 'clear-day') {
-              dailyIconImage.src = '../assets/images/weatherIcons/clear_day.png'
-            } else if (dailyIconText === 'clear-night') {
-              dailyIconImage.src =
-                '../assets/images/weatherIcons/clear_night.png'
-            } else if (dailyIconText === 'rain') {
-              dailyIconImage.src = '../assets/images/weatherIcons/rain.png'
-            } else if (dailyIconText === 'snow') {
-              dailyIconImage.src = '../assets/images/weatherIcons/snow.png'
-            } else if (dailyIconText === 'sleet') {
-              dailyIconImage.src = '../assets/images/weatherIcons/sleet.png'
-            } else if (dailyIconText === 'wind') {
-              dailyIconImage.src = '../assets/images/weatherIcons/wind.png'
-            } else if (dailyIconText === 'fog') {
-              dailyIconImage.src = '../assets/images/weatherIcons/fog.png'
-            } else if (dailyIconText === 'cloudy') {
-              dailyIconImage.src = '../assets/images/weatherIcons/cloudy.png'
-            } else if (dailyIconText === 'partly-cloudy-day') {
-              dailyIconImage.src =
-                '../assets/images/weatherIcons/partly_cloudy_day.png'
-            } else if (dailyIconText === 'partly-cloudy-night') {
-              dailyIconImage.src =
-                '../assets/images/weatherIcons/partly_cloudy_night.png'
-            }
-
-            forecastHTML += `<div class="weatherCard">`
-            forecastHTML += `<div class="dailyTemperatureLeftSection"><p class="dailyFormattedDate">${dailyformattedDate}</p>`
-            forecastHTML += `<div class="dailyTemperatures"><p class="dailyTemperatureHigh">${dailyTemperatureHigh}</p><p class="dailyTemperatureLow">${dailyTemperatureLow}</p></div></div>`
-            forecastHTML += `<div class="dailyIconImageContainer"><img class="dailyIconImage" src="${dailyIconImage.src}" alt="Weather Icon" /></div></div>`
-
-            if ((document.readyState = 'ready')) {
-              document.querySelector(
-                '.forecastedWeather'
-              ).innerHTML = forecastHTML
-            }
+          if ((document.readyState = 'ready')) {
+            document.querySelector(
+              '.forecastedWeather'
+            ).innerHTML = forecastHTML
           }
-        })
-    </script>
-    <script>
+        }
+      }
+
+      weatherXHR.open('GET', api, true)
+      weatherXHR.send()
+
       // Handles the navigation dropdown on small screen sizes.
       function toggleNavigationDropdown() {
         let dropdown = document.querySelector('.dropdown')
