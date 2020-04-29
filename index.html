@@ -5,14 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <link rel="stylesheet" href="../assets/css/index.css" />
-    <link rel="stylesheet" type="text/css" href="../assets/css/header.css" />
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/header.css" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="../assets/css/navigationBar.css"
+      href="assets/css/navigationBar.css"
     />
-    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/footer.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,500,600,700,900&display=swap"
       rel="stylesheet"
@@ -28,7 +28,7 @@
       <div class="headerIcon">
         <img
           class="menuIcon"
-          src="../assets/images/menuIcon.png"
+          src="assets/images/menuIcon.png"
           alt="Menu Icon"
         />
       </div>
@@ -36,14 +36,14 @@
 
     <!-- Dropdown section which is displayed when the menu button is clicked on small sized screens for navigation options -->
     <div class="dropdown">
-      <a href="/pages/index.html" class="navLinkHomeMenu menuLink">HOME</a>
-      <a href="/pages/location.html" class="navLinkLocationMenu menuLink"
+      <a href="index.html" class="navLinkHomeMenu menuLink">HOME</a>
+      <a href="./pages/location.html" class="navLinkLocationMenu menuLink"
         >LOCATION</a
       >
-      <a href="/pages/weather.html" class="navLinkWeatherMenu menuLink"
+      <a href="./pages/weather.html" class="navLinkWeatherMenu menuLink"
         >WEATHER</a
       >
-      <a href="/pages/references.html" class="navLinkReferencesMenu menuLink"
+      <a href="./pages/references.html" class="navLinkReferencesMenu menuLink"
         >REFERENCES</a
       >
     </div>
@@ -51,16 +51,16 @@
     <!-- Navigation Bar -->
     <nav class="navigationBarContainer">
       <div class="navItem">
-        <a href="/pages/index.html" class="navLinkHome">HOME</a>
+        <a href="index.html" class="navLinkHome">HOME</a>
       </div>
       <div class="navItem">
-        <a href="/pages/location.html" class="navLinkLocation">LOCATION</a>
+        <a href="./pages/location.html" class="navLinkLocation">LOCATION</a>
       </div>
       <div class="navItem">
-        <a href="/pages/weather.html" class="navLinkWeather">WEATHER</a>
+        <a href="./pages/weather.html" class="navLinkWeather">WEATHER</a>
       </div>
       <div class="navItem">
-        <a href="/pages/references.html" class="navLinkReferences"
+        <a href="./pages/references.html" class="navLinkReferences"
           >REFERENCES</a
         >
       </div>
@@ -70,7 +70,7 @@
     <main id="mainContent">
       <!-- Image consisting of four images showing a few different scenic places in Mumbai -->
       <img
-        src="../assets/images/composition.png"
+        src="assets/images/composition.png"
         class="compositionImage"
         alt="Image with scenic places in Mumbai"
       />
@@ -105,7 +105,7 @@
       'use strict'
 
       // Fetching data from the JSON file 'content.json'
-      var homeURL = '../content.json'
+      var homeURL = 'content.json'
       var homeXHR = new XMLHttpRequest()
       var html = ''
 

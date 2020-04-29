@@ -36,14 +36,12 @@
     </header>
     <!-- Dropdown section which is displayed when the menu button is clicked on small sized screens for navigation options -->
     <div class="dropdown">
-      <a href="/pages/index.html" class="navLinkHomeMenu menuLink">HOME</a>
-      <a href="/pages/location.html" class="navLinkLocationMenu menuLink"
+      <a href="../index.html" class="navLinkHomeMenu menuLink">HOME</a>
+      <a href="./location.html" class="navLinkLocationMenu menuLink"
         >LOCATION</a
       >
-      <a href="/pages/weather.html" class="navLinkWeatherMenu menuLink"
-        >WEATHER</a
-      >
-      <a href="/pages/references.html" class="navLinkReferencesMenu menuLink"
+      <a href="./weather.html" class="navLinkWeatherMenu menuLink">WEATHER</a>
+      <a href="./references.html" class="navLinkReferencesMenu menuLink"
         >REFERENCES</a
       >
     </div>
@@ -51,18 +49,16 @@
     <!-- Navigation Bar -->
     <nav class="navigationBarContainer">
       <div class="navItem">
-        <a href="/pages/index.html" class="navLinkHome">HOME</a>
+        <a href="../index.html" class="navLinkHome">HOME</a>
       </div>
       <div class="navItem">
-        <a href="/pages/location.html" class="navLinkLocation">LOCATION</a>
+        <a href="./location.html" class="navLinkLocation">LOCATION</a>
       </div>
       <div class="navItem">
-        <a href="/pages/weather.html" class="navLinkWeather">WEATHER</a>
+        <a href="./weather.html" class="navLinkWeather">WEATHER</a>
       </div>
       <div class="navItem">
-        <a href="/pages/references.html" class="navLinkReferences"
-          >REFERENCES</a
-        >
+        <a href="./references.html" class="navLinkReferences">REFERENCES</a>
       </div>
     </nav>
     <!-- /Navigation Bar -->
@@ -117,7 +113,7 @@
         .concat(long, '?exclude=minutely,hourly,alerts,flags')
 
       weatherXHR = new XMLHttpRequest()
-      weatherXHR.onload = function() {
+      weatherXHR.onload = function () {
         var data = JSON.parse(weatherXHR.responseText)
         // Current Weather
         let currentTemperature = data.currently.temperature + ' \u00B0F'

@@ -29,97 +29,97 @@
     "images": [
       {
         "imageName": "Menu Icon",
-        "imageIcon": "/assets/images/menuIcon.png",
+        "imageIcon": "../assets/images/menuIcon.png",
         "imageUrl": "https://www.flaticon.com/free-icon/menu_483334?term=menu%20icon&page=1&position=3#",
         "imageLocation": "This icon shows up on small screen sizes on the header, when the navigation bar options collapse and are available under the hamburger menu icon."
       },
       {
         "imageName": "Juhu Beach",
-        "imageIcon": "/assets/images/beach.jpg",
+        "imageIcon": "../assets/images/beach.jpg",
         "imageUrl": "https://wallpapercave.com/w/wp3768679",
         "imageLocation": "This is one of the images in the composition of four images on the Home Page."
       },
       {
         "imageName": "Worli Sea Link",
-        "imageIcon": "/assets/images/worliSeaLink.jpg",
+        "imageIcon": "../assets/images/worliSeaLink.jpg",
         "imageUrl": "https://wallpapercave.com/w/wp3768667",
         "imageLocation": "This is one of the images in the composition of four images on the Home Page."
       },
       {
         "imageName": "Marine Drive",
-        "imageIcon": "/assets/images/marineDrive.jpg",
+        "imageIcon": "../assets/images/marineDrive.jpg",
         "imageUrl": "https://wallpapercave.com/w/wp3768669",
         "imageLocation": "This is one of the images in the composition of four images on the Home Page."
       },
       {
         "imageName": "Gateway of India",
-        "imageIcon": "/assets/images/gatewayOfIndia.jpg",
+        "imageIcon": "../assets/images/gatewayOfIndia.jpg",
         "imageUrl": "https://wallpapercave.com/w/wp3768687",
         "imageLocation": "This is one of the images in the composition of four images on the Home Page."
       },
       {
         "imageName": "Weather Icon - Clear Day",
-        "imageIcon": "/assets/images/weatherIcons/clear_day.png",
+        "imageIcon": "../assets/images/weatherIcons/clear_day.png",
         "imageUrl": "https://www.flaticon.com/free-icon/sunny-day_72643?term=clear%20day&page=1&position=1#",
         "imageLocation": "This image is shown as an icon on the Weather Page depending on whether the real-time data suggests the climate as a clear day."
       },
       {
         "imageName": "Weather Icon - Clear Night",
-        "imageIcon": "/assets/images/weatherIcons/clear_night.png",
+        "imageIcon": "../assets/images/weatherIcons/clear_night.png",
         "imageUrl": "https://www.flaticon.com/free-icon/clear-night_17279?term=clear%20night&page=1&position=5",
         "imageLocation": "This image is shown as an icon on the Weather Page depending on whether the real-time data suggests the climate as a clear night."
       },
       {
         "imageName": "Weather Icon - Rain",
-        "imageIcon": "/assets/images/weatherIcons/rain.png",
+        "imageIcon": "../assets/images/weatherIcons/rain.png",
         "imageUrl": "https://www.flaticon.com/free-icon/rain_652572?term=rain&page=1&position=4",
         "imageLocation": "This image is shown as an icon on the Weather Page depending on whether the real-time data suggests the climate as a rainy day."
       },
       {
         "imageName": "Weather Icon - Snow",
-        "imageIcon": "/assets/images/weatherIcons/snow.png",
+        "imageIcon": "../assets/images/weatherIcons/snow.png",
         "imageUrl": "https://www.flaticon.com/free-icon/snowflake_1200430?term=snow&page=1&position=12",
         "imageLocation": "This image is shown as an icon on the Weather Page depending on whether the real-time data suggests the climate as a snowy day."
       },
       {
         "imageName": "Weather Icon - Sleet",
-        "imageIcon": "/assets/images/weatherIcons/sleet.png",
+        "imageIcon": "../assets/images/weatherIcons/sleet.png",
         "imageUrl": "https://www.flaticon.com/free-icon/sleet_727907?term=sleet&page=1&position=6",
         "imageLocation": "This image is shown as an icon on the Weather Page depending on whether the real-time data suggests the climate as a day with sleet."
       },
       {
         "imageName": "Weather Icon - Wind",
-        "imageIcon": "/assets/images/weatherIcons/wind.png",
+        "imageIcon": "../assets/images/weatherIcons/wind.png",
         "imageUrl": "https://www.flaticon.com/free-icon/wind_1506761?term=wind&page=1&position=15",
         "imageLocation": "This image is shown as an icon on the Weather Page depending on whether the real-time data suggests the climate as a windy day."
       },
       {
         "imageName": "Weather Icon - Fog",
-        "imageIcon": "/assets/images/weatherIcons/fog.png",
+        "imageIcon": "../assets/images/weatherIcons/fog.png",
         "imageUrl": "https://www.flaticon.com/free-icon/foggy_1809565?term=fog&page=1&position=13",
         "imageLocation": "This image is shown as an icon on the Weather Page depending on whether the real-time data suggests the climate as a foggy day."
       },
       {
         "imageName": "Weather Icon - Cloudy",
-        "imageIcon": "/assets/images/weatherIcons/cloudy.png",
+        "imageIcon": "../assets/images/weatherIcons/cloudy.png",
         "imageUrl": "https://www.flaticon.com/free-icon/clouds_414927?term=cloudy&page=1&position=6",
         "imageLocation": "This image is shown as an icon on the Weather Page depending on whether the real-time data suggests the climate as a cloudy day."
       },
       {
         "imageName": "Weather Icon - Partly Cloudy Day",
-        "imageIcon": "/assets/images/weatherIcons/partly_cloudy_day.png",
+        "imageIcon": "../assets/images/weatherIcons/partly_cloudy_day.png",
         "imageUrl": "https://www.flaticon.com/free-icon/sun_2698213?term=cloudy&page=1&position=10",
         "imageLocation": "This image is shown as an icon on the Weather Page depending on whether the real-time data suggests the climate as a partly cloudy day."
       },
       {
         "imageName": "Weather Icon - Partly Cloudy Night",
-        "imageIcon": "/assets/images/weatherIcons/partly_cloudy_night.png",
+        "imageIcon": "../assets/images/weatherIcons/partly_cloudy_night.png",
         "imageUrl": "https://www.flaticon.com/free-icon/cloudy_414933?term=cloudy%20night&page=1&position=9",
         "imageLocation": "This image is shown as an icon on the Weather Page depending on whether the real-time data suggests the climate as a partly cloudy night."
       },
       {
         "imageName": "Mumbai Skyline",
-        "imageIcon": "/assets/images/mumbaiSkyline.png",
+        "imageIcon": "../assets/images/mumbaiSkyline.png",
         "imageUrl": "https://www.vexels.com/vectors/preview/144393/mumbai-silhouette-skyline",
         "imageLocation": "This image is used in the background of the footer and the opacity of this image has been reduced."
       }
